@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.6.5",
+    "git-commit-msg-linter": "^5.0.4",
     "tsx": "^3.13.0",
     "typescript": "^5.2.2"
   }
