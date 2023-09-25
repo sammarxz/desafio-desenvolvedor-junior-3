@@ -6,7 +6,9 @@
   "author": "Sam Marxz <sammarxzz@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "lint": "eslint ./src --ext .ts",
+    "lint:fix": "eslint ./src --ext .ts --fix"
   },
   "type": "module",
   "dependencies": {
@@ -14,6 +16,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.6.5",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
     "git-commit-msg-linter": "^5.0.4",
     "tsx": "^3.13.0",
     "typescript": "^5.2.2"
