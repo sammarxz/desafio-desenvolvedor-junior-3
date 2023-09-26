@@ -6,7 +6,7 @@
   "author": "Sam Marxz <sammarxzz@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/app.ts",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
     "style:check": "prettier --check 'src/**/*.ts'",
@@ -14,7 +14,9 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "5.3.1",
+    "@fastify/swagger": "^8.10.1",
+    "@fastify/swagger-ui": "^1.9.3",
+    "@prisma/client": "^5.3.1",
     "fastify": "^4.23.2"
   },
   "devDependencies": {
