@@ -1,5 +1,4 @@
 import { z } from 'zod';
-// import { jsonSchemaTransform } from 'fastify-type-provider-zod';
 
 const userCore = {
   email: z
@@ -23,4 +22,20 @@ export const createUserResponseSchema = z.object({
   ...userCore,
 });
 
+export const loginUserSchema = z.object({
+  email: z
+    .string({
+      required_error: 'Email is required',
+      invalid_type_error: 'Email must be a string',
+    })
+    .email(),
+  password: z.string(),
+});
+
+export const loginUserResponseSchema = z.object({
+  accessToken: z.string(),
+});
+
 export type CreateUserInput = z.infer<typeof createUserSchema>;
+
+export type LoginUserInput = z.infer<typeof loginUserSchema>;

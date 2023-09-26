@@ -13,6 +13,6 @@
 - [x] Setup Eslint + Prettier
 - [x] Setup Prisma ORM
 - [x] Create `users` and `posts` models
-- [ ] Create Entities
-  - [ ] User
-  - [ ] Post
+- [x] Setup Swagger with OpenApi config
+- [x] Create User Register
+- [x] Create User Login

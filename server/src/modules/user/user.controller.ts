@@ -1,7 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import bcrypt from 'bcrypt';
 
-import { createUser } from './user.service';
-import { CreateUserInput } from './user.schema';
+import { createUser, findUserByEmail } from './user.service';
+import { CreateUserInput, LoginUserInput } from './user.schema';
 
 export async function registerUserHandler(
   req: FastifyRequest<{
@@ -22,4 +23,35 @@ export async function registerUserHandler(
     console.error(err);
     return reply.code(500).send(err);
   }
+}
+
+export async function loginUserHandler(
+  req: FastifyRequest<{
+    Body: LoginUserInput;
+  }>,
+  reply: FastifyReply
+) {
+  const { email, password } = req.body;
+
+  const user = await findUserByEmail(email);
+
+  if (!user) {
+    return reply.code(401).send({
+      message: 'Invalid email or password',
+    });
+  }
+
+  const correctPassword = await bcrypt.compare(password, user.password);
+
+  if (correctPassword) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = user;
+    return {
+      accessToken: req.jwt.sign(rest),
+    };
+  }
+
+  return reply.code(401).send({
+    message: 'Invalid email or password',
+  });
 }

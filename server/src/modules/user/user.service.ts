@@ -3,12 +3,18 @@ import bcrypt from 'bcrypt';
 import { CreateUserInput } from './user.schema';
 import { prisma } from '@/lib/prisma';
 
+export async function findUserByEmail(email: string) {
+  return prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+}
+
 export async function createUser(data: CreateUserInput) {
   const { password, ...rest } = data;
 
-  const existingUser = await prisma.user.findUnique({
-    where: { email: data.email },
-  });
+  const existingUser = await findUserByEmail(data.email);
 
   if (existingUser) {
     throw new Error('This email is already in use.');

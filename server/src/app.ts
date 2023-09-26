@@ -1,7 +1,19 @@
-import { Server } from '@/server';
+import Fastify from 'fastify';
 
-const server = new Server();
+import { initializeServer } from './initializeServer';
 
-server.start({
-  port: 3333,
-});
+const PORT = 3333;
+const server = Fastify();
+
+initializeServer(server);
+
+(async () => {
+  try {
+    await server.ready();
+    await server.listen({ port: PORT });
+    console.log(`Server ready at http://localhost:${PORT}`);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+})();
