@@ -1,0 +1,60 @@
+{
+  "date": "2023-09-26T21:20:45.753Z",
+  "argv": [
+    "/home/akenathon/.nvm/versions/node/v18.17.1/bin/node",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/__tests__/server.test.ts"
+  ],
+  "execArgv": [
+    "--loader=file:///home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/node_modules/@tapjs/test/node_modules/ts-node/esm.mjs",
+    "--loader=file:///home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/node_modules/@tapjs/mock/dist/esm/legacy-loader.mjs",
+    "--no-warnings",
+    "--enable-source-maps",
+    "--loader=file:///home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/node_modules/@tapjs/processinfo/dist/mjs/loader-legacy.mjs"
+  ],
+  "NODE_OPTIONS": "\"--loader=file:///home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/node_modules/@tapjs/processinfo/dist/mjs/loader-legacy.mjs\" \"--no-warnings\"",
+  "cwd": "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server",
+  "pid": 272982,
+  "ppid": 272965,
+  "parent": null,
+  "uuid": "40e1b6ad-9514-4725-aed7-7374d08db774",
+  "files": [
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/__tests__/server.test.ts",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/initializeServer.ts",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.routes.ts",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.controller.ts",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.service.ts",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/lib/prisma.ts",
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.schema.ts"
+  ],
+  "sources": {
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/__tests__/server.test.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/__tests__/server.test.ts"
+    ],
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/initializeServer.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/initializeServer.ts"
+    ],
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.routes.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.routes.ts"
+    ],
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.controller.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.controller.ts"
+    ],
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.service.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.service.ts"
+    ],
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/lib/prisma.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/lib/prisma.ts"
+    ],
+    "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.schema.ts": [
+      "/home/akenathon/Documents/code/tests/softmakers/desafio-desenvolvedor-junior-3/server/src/modules/user/user.schema.ts"
+    ]
+  },
+  "root": "40e1b6ad-9514-4725-aed7-7374d08db774",
+  "externalID": "src/__tests__/server.test.ts",
+  "code": 0,
+  "signal": null,
+  "runtime": 2829.225118,
+  "globalsAdded": [
+    "NODE_CLIENT"
+  ]
+}
