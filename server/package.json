@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "lint": "eslint ./src --ext .ts",
-    "lint:fix": "eslint ./src --ext .ts --fix"
+    "lint:fix": "eslint ./src --ext .ts --fix",
+    "style:check": "prettier --check 'src/**/*.ts'",
+    "style:fix": "prettier --write 'src/**/*.ts'"
   },
   "type": "module",
   "dependencies": {
@@ -19,7 +21,10 @@
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "git-commit-msg-linter": "^5.0.4",
+    "prettier": "^3.0.3",
     "tsx": "^3.13.0",
     "typescript": "^5.2.2"
   }
