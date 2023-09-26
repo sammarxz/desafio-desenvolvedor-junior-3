@@ -14,7 +14,10 @@ export async function registerUserHandler(
   try {
     const user = await createUser(body);
 
-    return reply.code(201).send(user);
+    return reply.code(201).send({
+      id: user.id,
+      email: user.email,
+    });
   } catch (err) {
     console.error(err);
     return reply.code(500).send(err);

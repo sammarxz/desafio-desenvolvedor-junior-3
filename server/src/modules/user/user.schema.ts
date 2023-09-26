@@ -18,9 +18,9 @@ export const createUserSchema = z.object({
   }),
 });
 
-// const createUserResponseSchema = z.object({
-//   id: z.number(),
-//   ...userCore,
-// });
+export const createUserResponseSchema = z.object({
+  id: z.string().uuid(),
+  ...userCore,
+});
 
 export type CreateUserInput = z.infer<typeof createUserSchema>;

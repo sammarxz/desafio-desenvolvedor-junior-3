@@ -1,18 +1,27 @@
-import { hashPassword } from '@/utils/hash';
+import bcrypt from 'bcrypt';
+
 import { CreateUserInput } from './user.schema';
 import { prisma } from '@/lib/prisma';
 
 export async function createUser(data: CreateUserInput) {
   const { password, ...rest } = data;
 
-  const { hash } = hashPassword(password);
+  const existingUser = await prisma.user.findUnique({
+    where: { email: data.email },
+  });
 
-  const user = await prisma.user.create({
+  if (existingUser) {
+    throw new Error('This email is already in use.');
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = await prisma.user.create({
     data: {
       ...rest,
-      password: hash,
+      password: hashedPassword,
     },
   });
 
-  return user;
+  return newUser;
 }
