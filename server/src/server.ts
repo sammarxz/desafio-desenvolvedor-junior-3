@@ -1,6 +1,13 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
+import {
+  jsonSchemaTransform,
+  serializerCompiler,
+  validatorCompiler,
+} from 'fastify-type-provider-zod';
+
+import { userRoutes } from './modules/user/user.routes';
 
 const swaggerOptions = {
   openapi: {
@@ -10,6 +17,7 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
+  transform: jsonSchemaTransform,
 };
 
 const swaggerUiOptions = {
@@ -24,8 +32,14 @@ export class Server {
   constructor() {
     this.server = Fastify();
 
+    this.configureCompiler();
     this.configurePlugins();
     this.configureRoutes();
+  }
+
+  private configureCompiler() {
+    this.server.setValidatorCompiler(validatorCompiler);
+    this.server.setSerializerCompiler(serializerCompiler);
   }
 
   private async configurePlugins() {
@@ -36,6 +50,10 @@ export class Server {
   private async configureRoutes() {
     this.server.get('/healthcheck', async function () {
       return { status: 'OK' };
+    });
+
+    this.server.register(userRoutes, {
+      prefix: 'api/users',
     });
   }
 
