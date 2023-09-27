@@ -20,11 +20,11 @@ yarn dev
 #### Linter
 
 ```
-yarn lint #just lint and point some errors
+yarn lint
 ```
 
 ```
-yarn lint:fix #lint and fix some errors
+yarn lint:fix
 ```
 
 #### Styles
@@ -34,7 +34,7 @@ yarn style
 ```
 
 ```
-yarn style:fi
+yarn style:fix
 ```
 
 #### Tests
@@ -42,6 +42,12 @@ yarn style:fi
 ```
 yarn test
 ```
+
+## Available Routes
+
+- **GET /docs** - Swagger with OpenAPI Documentation
+- **POST /api/users** - Register a new user
+- **POST /api/users/login** - Login user
 
 ## Roadmap
 
