@@ -4,18 +4,54 @@
 
 - Fastify
 - Eslint + Prettier
+- TapJS (for testing)
 - Prisma ORM
 - PostgresSQL
 - Typescript
 
-## To Do's
+## Available Commands
 
-- [x] Setup Eslint + Prettier
-- [x] Setup Prisma ORM
-- [x] Create `users` and `posts` models
-- [x] Setup Swagger with OpenApi config
-- [x] Create User Register
-- [x] Create User Login
-- [ ] CRUD Posts
-- [ ] Dockerize application 
-- [ ] Deploy
+#### Run Development Server
+
+```
+yarn dev
+```
+
+#### Linter
+
+```
+yarn lint #just lint and point some errors
+```
+
+```
+yarn lint:fix #lint and fix some errors
+```
+
+#### Styles
+
+```
+yarn style
+```
+
+```
+yarn style:fi
+```
+
+#### Tests
+
+```
+yarn test
+```
+
+## Roadmap
+
+1. [x] Setup Eslint + Prettier
+2. [x] Setup Prisma ORM
+3. [x] Create `users` and `posts` models
+4. [x] Create and configure `server` with `Fastify`
+5. [x] Setup Swagger with OpenApi config
+6. [x] Create User Register
+7. [x] Create User Login
+8. [ ] CRUD Posts
+9. [ ] Dockerize application
+10. [ ] Deploy
