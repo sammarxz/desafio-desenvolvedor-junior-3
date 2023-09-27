@@ -1,19 +1,25 @@
 import { FastifyInstance } from 'fastify';
 
-import { RouteConfig } from '../../utils/registerRoutes';
+import {
+  createPostHandler,
+  deletePostHandler,
+  getPostsHandler,
+} from './post.controller';
 
-import { createPostHandler, getPostsHandler } from './post.controller';
 import {
   authorizationHeaderSchema,
   createPostResponseSchema,
   createPostSchema,
+  deletePostSchema,
   postsResponseSchema,
 } from './post.schema';
+
+import { RouteConfig } from '../../utils/registerRoutes';
 
 export const postRoutes = (app: FastifyInstance): RouteConfig[] => [
   {
     method: 'POST',
-    url: '/',
+    url: '',
     preHandler: [app.authenticate],
     schema: {
       tags: ['Posts'],
@@ -28,7 +34,7 @@ export const postRoutes = (app: FastifyInstance): RouteConfig[] => [
   },
   {
     method: 'GET',
-    url: '/',
+    url: '',
     schema: {
       tags: ['Posts'],
       description: 'get all posts',
@@ -37,5 +43,17 @@ export const postRoutes = (app: FastifyInstance): RouteConfig[] => [
       },
     },
     handler: getPostsHandler,
+  },
+  {
+    method: 'DELETE',
+    url: '/:postId',
+    preHandler: [app.authenticate],
+    schema: {
+      tags: ['Posts'],
+      description: 'delete post by id',
+      headers: authorizationHeaderSchema,
+      params: deletePostSchema,
+    },
+    handler: deletePostHandler,
   },
 ];

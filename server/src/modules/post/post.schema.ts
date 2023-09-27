@@ -26,7 +26,7 @@ export const createPostResponseSchema = z.object({
 
 // TODO: study how to add Authorization header in fastify-swagger
 export const authorizationHeaderSchema = z.object({
-  token: z.string({
+  authorization: z.string({
     description: 'Access Token',
   }),
 });
@@ -42,13 +42,24 @@ export const postsResponseSchema = z.array(
   })
 );
 
+export const postIdParamSchema = z.string().uuid();
+
+export const deletePostSchema = z.object({
+  postId: postIdParamSchema,
+});
+
 export type CreatePostInput = z.infer<typeof createPostSchema>;
+
+export type DeletePostInput = z.infer<typeof deletePostSchema>;
+
+export type PostIdInput = z.infer<typeof postIdParamSchema>;
 
 export const { schemas: postSchemas, $ref } = buildJsonSchemas(
   {
     createPostSchema,
     createPostResponseSchema,
     postsResponseSchema,
+    deletePostSchema,
   },
   {
     $id: 'postSchemas',

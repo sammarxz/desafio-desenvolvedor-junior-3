@@ -15,15 +15,21 @@ type PreHandlerFunction = (
   done: DoneFuncWithErrOrRes
 ) => void;
 
+interface CustomRouteShorthandOptions
+  extends RouteShorthandOptions,
+    FastifySchema {
+  params?: ZodObject<any>;
+}
+
 export type RouteConfig = {
-  method: 'POST' | 'GET';
+  method: 'POST' | 'GET' | 'DELETE' | 'PUT';
   url: string;
-  schema: RouteShorthandOptions & {
+  schema: CustomRouteShorthandOptions & {
     tags: string[];
     description: string;
     headers?: ZodObject<any>;
     body?: ZodObject<any>;
-    response: { [statusCode: number]: FastifySchema };
+    response?: { [statusCode: number]: FastifySchema };
   };
   handler: (...args: any[]) => any;
   preHandler?: PreHandlerFunction | PreHandlerFunction[];

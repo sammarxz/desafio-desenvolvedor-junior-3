@@ -113,7 +113,8 @@ export async function initializeServer(server: FastifyZodInstance) {
     'authenticate',
     async (req: FastifyRequest, reply: FastifyReply) => {
       try {
-        await server.jwt.verify(req.headers.token as string);
+        // await server.jwt.verify(req.headers.token as string);
+        await req.jwtVerify();
       } catch (err) {
         return reply.send(err);
       }
@@ -135,7 +136,6 @@ export async function initializeServer(server: FastifyZodInstance) {
   server.get('/healthcheck', async function () {
     return { status: 'OK' };
   });
-
   server.register(
     (app, _, done) => {
       registerRoutes({ app, routes: () => userRoutes() });
