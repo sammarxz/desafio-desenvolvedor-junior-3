@@ -5,3 +5,13 @@ Content-Type: application/json
   "email": "test@gmail.com",
   "password": "required"
 }
+
+###
+
+POST http://localhost:3333/api/users/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "required"
+}
