@@ -14,6 +14,8 @@ export async function userRoutes(server: FastifyInstance) {
     method: 'POST',
     url: '/',
     schema: {
+      tags: ['User'],
+      description: 'Register a new user',
       body: createUserSchema,
       response: {
         200: createUserResponseSchema,
@@ -26,6 +28,8 @@ export async function userRoutes(server: FastifyInstance) {
     method: 'POST',
     url: '/login',
     schema: {
+      tags: ['User'],
+      description: 'Login user',
       body: loginUserSchema,
       response: {
         200: loginUserResponseSchema,
