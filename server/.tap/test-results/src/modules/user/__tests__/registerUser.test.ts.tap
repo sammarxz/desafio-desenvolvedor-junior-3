@@ -5,25 +5,25 @@ TAP version 14
     ok 3 - should be equal
     ok 4 - should be equal
     1..4
-ok 1 - POST `/api/users` should create user with mock createUser # time=103.92ms
+ok 1 - POST `/api/users` should create user with mock createUser # time=143.455ms
 
 [34mprisma:query[39m SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`created_at` FROM `main`.`users` WHERE (`main`.`users`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
 [34mprisma:query[39m BEGIN
 [34mprisma:query[39m INSERT INTO `main`.`users` (`id`, `email`, `password`, `created_at`) VALUES (?,?,?,?) RETURNING `id` AS `id`
 [34mprisma:query[39m SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`created_at` FROM `main`.`users` WHERE `main`.`users`.`id` = ? LIMIT ? OFFSET ?
-[34mprisma:query[39m COMMIT
 # Subtest: POST `/api/users` should create user with test database
     ok 1 - should be equal
     ok 2 - should be equal
     ok 3 - should be equal
     ok 4 - type is string
     1..4
+[34mprisma:query[39m COMMIT
 [34mprisma:query[39m BEGIN
 [34mprisma:query[39m SELECT `main`.`users`.`id` FROM `main`.`users` WHERE 1=1 LIMIT ? OFFSET ?
 [34mprisma:query[39m SELECT `main`.`users`.`id` FROM `main`.`users` WHERE 1=1
 [34mprisma:query[39m DELETE FROM `main`.`users` WHERE (`main`.`users`.`id` IN (?) AND 1=1)
 [34mprisma:query[39m COMMIT
-ok 2 - POST `/api/users` should create user with test database # time=116.463ms
+ok 2 - POST `/api/users` should create user with test database # time=107.133ms
 
 # Subtest: POST `/api/users` should fail to create user with a incorrect request
     ok 1 - should be equal
@@ -34,6 +34,6 @@ ok 2 - POST `/api/users` should create user with test database # time=116.463ms
 [34mprisma:query[39m SELECT `main`.`users`.`id` FROM `main`.`users` WHERE 1=1 LIMIT ? OFFSET ?
 [34mprisma:query[39m SELECT `main`.`users`.`id` FROM `main`.`users` WHERE 1=1
 [34mprisma:query[39m COMMIT
-ok 3 - POST `/api/users` should fail to create user with a incorrect request # time=4.116ms
+ok 3 - POST `/api/users` should fail to create user with a incorrect request # time=6.602ms
 
 1..3
