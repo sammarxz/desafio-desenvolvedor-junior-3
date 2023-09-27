@@ -20,7 +20,7 @@ let server: FastifyInstance<
   FastifyTypeProviderDefault
 >;
 
-test('POST `/api/users/login`', async () => {
+test('POST `/apilogin`', async () => {
   t.before(() => {
     server = Fastify();
     initializeServer(server);
@@ -36,7 +36,7 @@ test('POST `/api/users/login`', async () => {
 
     await server.inject({
       method: 'POST',
-      url: 'api/users',
+      url: 'api/register',
       payload: {
         email,
         password,
@@ -45,7 +45,7 @@ test('POST `/api/users/login`', async () => {
 
     const response = await server.inject({
       method: 'POST',
-      url: '/api/users/login',
+      url: '/api/login',
       payload: {
         email,
         password,
@@ -70,7 +70,7 @@ test('POST `/api/users/login`', async () => {
 
     await server.inject({
       method: 'POST',
-      url: '/api/users',
+      url: '/api/register',
       payload: {
         email,
         password,
@@ -79,7 +79,7 @@ test('POST `/api/users/login`', async () => {
 
     const response = await server.inject({
       method: 'POST',
-      url: '/api/users/login',
+      url: '/api/login',
       payload: {
         email,
         password: 'wrong',

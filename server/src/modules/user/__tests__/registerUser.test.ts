@@ -27,7 +27,7 @@ t.before(() => {
   initializeServer(server);
 });
 
-test('POST `/api/users` should create user with mock createUser', async (t) => {
+test('POST `/api/register` should create user with mock createUser', async (t) => {
   const id = randomUUID();
   const email = faker.internet.email();
   const password = faker.internet.password();
@@ -45,7 +45,7 @@ test('POST `/api/users` should create user with mock createUser', async (t) => {
 
   const response = await server.inject({
     method: 'POST',
-    url: '/api/users',
+    url: '/api/register',
     payload: {
       id,
       email,
@@ -62,7 +62,7 @@ test('POST `/api/users` should create user with mock createUser', async (t) => {
   t.equal(json.email, email);
 });
 
-test('POST `/api/users` should create user with test database', async (t) => {
+test('POST `/api/register` should create user with test database', async (t) => {
   const email = faker.internet.email();
   const password = faker.internet.password();
 
@@ -73,7 +73,7 @@ test('POST `/api/users` should create user with test database', async (t) => {
 
   const response = await server.inject({
     method: 'POST',
-    url: '/api/users',
+    url: '/api/register',
     payload: {
       email,
       password,
@@ -89,7 +89,7 @@ test('POST `/api/users` should create user with test database', async (t) => {
   t.type(json.id, 'string');
 });
 
-test('POST `/api/users` should fail to create user with a incorrect request', async (t) => {
+test('POST `/api/register` should fail to create user with a incorrect request', async (t) => {
   const password = faker.internet.password();
 
   t.teardown(async () => {
@@ -99,7 +99,7 @@ test('POST `/api/users` should fail to create user with a incorrect request', as
 
   const response = await server.inject({
     method: 'POST',
-    url: '/api/users',
+    url: '/api/register',
     payload: {
       password,
     },

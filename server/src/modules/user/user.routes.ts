@@ -12,7 +12,7 @@ import {
 export async function userRoutes(server: FastifyInstance) {
   server.withTypeProvider<ZodTypeProvider>().route({
     method: 'POST',
-    url: '/',
+    url: '/register',
     schema: {
       tags: ['User'],
       description: 'Register a new user',
