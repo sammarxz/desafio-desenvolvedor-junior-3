@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { buildJsonSchemas } from 'fastify-zod';
 
 const userCore = {
   email: z
@@ -39,3 +40,15 @@ export const loginUserResponseSchema = z.object({
 export type CreateUserInput = z.infer<typeof createUserSchema>;
 
 export type LoginUserInput = z.infer<typeof loginUserSchema>;
+
+export const { schemas: userSchemas, $ref } = buildJsonSchemas(
+  {
+    createUserSchema,
+    createUserResponseSchema,
+    loginUserSchema,
+    loginUserResponseSchema,
+  },
+  {
+    $id: 'userSchemas',
+  }
+);
