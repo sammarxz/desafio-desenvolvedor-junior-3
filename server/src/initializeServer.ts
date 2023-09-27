@@ -10,6 +10,7 @@ import fjwt, { JWT } from '@fastify/jwt';
 import { fastifyEnv } from '@fastify/env';
 
 import { userRoutes } from './modules/user/user.routes';
+import { postRoutes } from './modules/post/post.routes';
 
 const fastifyEnvSchema = {
   type: 'object',
@@ -47,7 +48,7 @@ declare module 'fastify' {
 declare module '@fastify/jwt' {
   interface FastifyJWT {
     user: {
-      id: number;
+      id: string;
       email: string;
       name: string;
     };
@@ -109,4 +110,5 @@ export async function initializeServer(server: FastifyInstance) {
     return { status: 'OK' };
   });
   server.register(userRoutes, { prefix: 'api/users' });
+  server.register(postRoutes, { prefix: 'api/posts' });
 }
