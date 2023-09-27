@@ -1,6 +1,6 @@
 import { FastifyRequest } from 'fastify';
 
-import { createPost } from './post.service';
+import { createPost, getPosts } from './post.service';
 import { CreatePostInput } from './post.schema';
 
 export async function createPostHandler(
@@ -13,4 +13,10 @@ export async function createPostHandler(
   });
 
   return post;
+}
+
+export async function getPostsHandler() {
+  const posts = await getPosts();
+
+  return posts;
 }
