@@ -2,10 +2,10 @@
 
 ## Technologies
 
+- Fastify
 - Eslint + Prettier
 - Prisma ORM
 - PostgresSQL
-- Fastify
 - Typescript
 
 ## To Do's
@@ -16,3 +16,6 @@
 - [x] Setup Swagger with OpenApi config
 - [x] Create User Register
 - [x] Create User Login
+- [ ] CRUD Posts
+- [ ] Dockerize application 
+- [ ] Deploy
