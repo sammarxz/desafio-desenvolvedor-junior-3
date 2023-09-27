@@ -1,7 +1,5 @@
-import { FastifyInstance } from 'fastify';
-import { ZodTypeProvider } from 'fastify-type-provider-zod';
-
 import { loginUserHandler, registerUserHandler } from './user.controller';
+
 import {
   createUserSchema,
   createUserResponseSchema,
@@ -9,10 +7,12 @@ import {
   loginUserResponseSchema,
 } from './user.schema';
 
-export async function userRoutes(server: FastifyInstance) {
-  server.withTypeProvider<ZodTypeProvider>().route({
+import { RouteConfig } from '../../utils/registerRoutes';
+
+export const userRoutes = (): RouteConfig[] => [
+  {
     method: 'POST',
-    url: '/register',
+    url: `/register`,
     schema: {
       tags: ['User'],
       description: 'Register a new user',
@@ -22,11 +22,10 @@ export async function userRoutes(server: FastifyInstance) {
       },
     },
     handler: registerUserHandler,
-  });
-
-  server.withTypeProvider<ZodTypeProvider>().route({
+  },
+  {
     method: 'POST',
-    url: '/login',
+    url: `/login`,
     schema: {
       tags: ['User'],
       description: 'Login user',
@@ -36,5 +35,5 @@ export async function userRoutes(server: FastifyInstance) {
       },
     },
     handler: loginUserHandler,
-  });
-}
+  },
+];

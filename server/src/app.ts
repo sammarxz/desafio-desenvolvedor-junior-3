@@ -1,9 +1,10 @@
 import Fastify from 'fastify';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
 
 import { initializeServer } from './initializeServer';
 
 const PORT = 3333;
-const server = Fastify();
+const server = Fastify().withTypeProvider<ZodTypeProvider>();
 
 initializeServer(server);
 

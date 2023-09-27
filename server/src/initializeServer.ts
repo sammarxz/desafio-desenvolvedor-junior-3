@@ -1,7 +1,13 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import {
+  FastifyBaseLogger,
+  FastifyInstance,
+  FastifyReply,
+  FastifyRequest,
+} from 'fastify';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import {
+  ZodTypeProvider,
   jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
@@ -14,6 +20,16 @@ import { postRoutes } from './modules/post/post.routes';
 
 import { postSchemas } from './modules/post/post.schema';
 import { userSchemas } from './modules/user/user.schema';
+import { Server, IncomingMessage, ServerResponse } from 'http';
+import { registerRoutes } from './utils/registerRoutes';
+
+type FastifyZodInstance = FastifyInstance<
+  Server<typeof IncomingMessage, typeof ServerResponse>,
+  IncomingMessage,
+  ServerResponse<IncomingMessage>,
+  FastifyBaseLogger,
+  ZodTypeProvider
+>;
 
 const fastifyEnvSchema = {
   type: 'object',
@@ -76,7 +92,7 @@ const swaggerUiOptions = {
   staticCSP: true,
 };
 
-export async function initializeServer(server: FastifyInstance) {
+export async function initializeServer(server: FastifyZodInstance) {
   // set validators
   server.setValidatorCompiler(validatorCompiler);
   server.setSerializerCompiler(serializerCompiler);
@@ -119,6 +135,14 @@ export async function initializeServer(server: FastifyInstance) {
   server.get('/healthcheck', async function () {
     return { status: 'OK' };
   });
-  server.register(userRoutes, { prefix: 'api/' });
-  server.register(postRoutes, { prefix: 'api/posts' });
+
+  server.register(
+    (app, _, done) => {
+      registerRoutes({ app, routes: () => userRoutes() });
+      registerRoutes({ app, prefix: '/posts', routes: () => postRoutes(app) });
+
+      done();
+    },
+    { prefix: '/api' }
+  );
 }

@@ -1,5 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { ZodTypeProvider } from 'fastify-type-provider-zod';
+
+import { RouteConfig } from '../../utils/registerRoutes';
 
 import { createPostHandler, getPostsHandler } from './post.controller';
 import {
@@ -9,11 +10,11 @@ import {
   postsResponseSchema,
 } from './post.schema';
 
-export async function postRoutes(server: FastifyInstance) {
-  server.withTypeProvider<ZodTypeProvider>().route({
+export const postRoutes = (app: FastifyInstance): RouteConfig[] => [
+  {
     method: 'POST',
     url: '/',
-    preHandler: [server.authenticate],
+    preHandler: [app.authenticate],
     schema: {
       tags: ['Posts'],
       description: 'Create new post',
@@ -24,8 +25,8 @@ export async function postRoutes(server: FastifyInstance) {
       },
     },
     handler: createPostHandler,
-  });
-  server.withTypeProvider<ZodTypeProvider>().route({
+  },
+  {
     method: 'GET',
     url: '/',
     schema: {
@@ -36,5 +37,5 @@ export async function postRoutes(server: FastifyInstance) {
       },
     },
     handler: getPostsHandler,
-  });
-}
+  },
+];
