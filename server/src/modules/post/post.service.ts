@@ -1,10 +1,15 @@
-import { CreatePostInput, PostIdInput } from './post.schema';
+import { CreatePostInput, PostIdInput, UpdatePostInput } from './post.schema';
+
 import { prisma } from '../../lib/prisma';
+
 import { UserIdInput } from '../user/user.schema';
 
-export async function createPost(data: CreatePostInput) {
+export async function createPost(userId: UserIdInput, data: CreatePostInput) {
   return await prisma.post.create({
-    data,
+    data: {
+      authorId: userId,
+      ...data,
+    },
   });
 }
 
@@ -28,8 +33,22 @@ export async function getPosts() {
 export async function deletePost(userId: UserIdInput, postId: PostIdInput) {
   return await prisma.post.delete({
     where: {
-      id: postId,
+      id: postId.postId,
       authorId: userId,
     },
+  });
+}
+
+export async function updatePost(
+  userId: UserIdInput,
+  postId: PostIdInput,
+  data: UpdatePostInput
+) {
+  return await prisma.post.update({
+    where: {
+      id: postId.postId,
+      authorId: userId,
+    },
+    data,
   });
 }

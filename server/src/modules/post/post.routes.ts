@@ -4,14 +4,16 @@ import {
   createPostHandler,
   deletePostHandler,
   getPostsHandler,
+  updatePostHandler,
 } from './post.controller';
 
 import {
   authorizationHeaderSchema,
   createPostResponseSchema,
   createPostSchema,
-  deletePostSchema,
+  postIdParamSchema,
   postsResponseSchema,
+  updatePostSchema,
 } from './post.schema';
 
 import { RouteConfig } from '../../utils/registerRoutes';
@@ -52,8 +54,24 @@ export const postRoutes = (app: FastifyInstance): RouteConfig[] => [
       tags: ['Posts'],
       description: 'delete post by id',
       headers: authorizationHeaderSchema,
-      params: deletePostSchema,
+      params: postIdParamSchema,
+      response: {
+        200: createPostResponseSchema,
+      },
     },
     handler: deletePostHandler,
+  },
+  {
+    method: 'PUT',
+    url: '/:postId',
+    preHandler: [app.authenticate],
+    schema: {
+      tags: ['Posts'],
+      description: 'delete post by id',
+      headers: authorizationHeaderSchema,
+      params: postIdParamSchema,
+      body: updatePostSchema,
+    },
+    handler: updatePostHandler,
   },
 ];
