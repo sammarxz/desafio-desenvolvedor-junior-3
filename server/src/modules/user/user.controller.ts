@@ -14,7 +14,6 @@ export async function registerUserHandler(
 
   try {
     const user = await createUser(body);
-
     return reply.code(201).send({
       id: user.id,
       email: user.email,
@@ -44,10 +43,16 @@ export async function loginUserHandler(
   const correctPassword = await bcrypt.compare(password, user.password);
 
   if (correctPassword) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...rest } = user;
     return {
-      accessToken: req.jwt.sign(rest),
+      accessToken: req.jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+        },
+        {
+          expiresIn: '1d',
+        }
+      ),
     };
   }
 
