@@ -43,6 +43,12 @@ yarn style:fix
 yarn test
 ```
 
+#### Prisma Studio
+
+```
+yarn prisma studio
+```
+
 ## Available Routes
 
 - **GET /docs** - Swagger with OpenAPI Documentation
