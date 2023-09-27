@@ -52,8 +52,12 @@ yarn prisma studio
 ## Available Routes
 
 - **GET /docs** - Swagger with OpenAPI Documentation
-- **POST /api/users** - Register a new user
-- **POST /api/users/login** - Login user
+- **POST /api/register** - Register a new user
+- **POST /api/login** - Login user
+- **POST /api/posts** - Create a new Post (Auth required)
+- **GET /api/posts** - Get all posts
+- **PUT /api/posts/:postId** - Update a post by Id (auth required)
+- **DELETE /api/posts/:postId** - Delete a post by Id (auth required)
 
 ## Roadmap
 
@@ -64,6 +68,6 @@ yarn prisma studio
 5. [x] Setup Swagger with OpenApi config
 6. [x] Create User Register
 7. [x] Create User Login
-8. [ ] CRUD Posts
+8. [x] CRUD Posts
 9. [ ] Dockerize application
 10. [ ] Deploy
