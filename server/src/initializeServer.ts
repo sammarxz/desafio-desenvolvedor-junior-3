@@ -12,6 +12,9 @@ import { fastifyEnv } from '@fastify/env';
 import { userRoutes } from './modules/user/user.routes';
 import { postRoutes } from './modules/post/post.routes';
 
+import { postSchemas } from './modules/post/post.schema';
+import { userSchemas } from './modules/user/user.schema';
+
 const fastifyEnvSchema = {
   type: 'object',
   required: ['JWT_SECRET', 'DATABASE_URL'],
@@ -41,7 +44,8 @@ declare module 'fastify' {
     };
   }
   export interface FastifyInstance {
-    authenticate: unknown;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    authenticate: any;
   }
 }
 
@@ -84,6 +88,7 @@ export async function initializeServer(server: FastifyInstance) {
   server.register(fjwt, {
     secret: server.config.JWT_SECRET,
   });
+
   server.register(fastifySwagger, swaggerOptions);
   server.register(fastifySwaggerUi, swaggerUiOptions);
 
@@ -92,7 +97,7 @@ export async function initializeServer(server: FastifyInstance) {
     'authenticate',
     async (req: FastifyRequest, reply: FastifyReply) => {
       try {
-        await req.jwtVerify();
+        await server.jwt.verify(req.headers.token as string);
       } catch (err) {
         return reply.send(err);
       }
@@ -105,10 +110,15 @@ export async function initializeServer(server: FastifyInstance) {
     return next();
   });
 
+  // schemas
+  for (const schema of [...userSchemas, ...postSchemas]) {
+    server.addSchema(schema);
+  }
+
   // routes
   server.get('/healthcheck', async function () {
     return { status: 'OK' };
   });
-  server.register(userRoutes, { prefix: 'api/users' });
+  server.register(userRoutes, { prefix: 'api/' });
   server.register(postRoutes, { prefix: 'api/posts' });
 }
