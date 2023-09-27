@@ -23,7 +23,7 @@ import { userSchemas } from './modules/user/user.schema';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 import { registerRoutes } from './utils/registerRoutes';
 
-type FastifyZodInstance = FastifyInstance<
+export type FastifyZodInstance = FastifyInstance<
   Server<typeof IncomingMessage, typeof ServerResponse>,
   IncomingMessage,
   ServerResponse<IncomingMessage>,

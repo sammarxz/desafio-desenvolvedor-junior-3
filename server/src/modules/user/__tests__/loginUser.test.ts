@@ -1,28 +1,20 @@
-import Fastify, {
-  FastifyBaseLogger,
-  FastifyInstance,
-  FastifyTypeProviderDefault,
-  RawServerDefault,
-} from 'fastify';
+import Fastify from 'fastify';
 import { faker } from '@faker-js/faker';
 import t, { test } from 'tap';
-import { IncomingMessage, ServerResponse } from 'http';
 import { UserType } from '@fastify/jwt';
 
-import { initializeServer } from '../../../initializeServer';
+import {
+  FastifyZodInstance,
+  initializeServer,
+} from '../../../initializeServer';
 import { prisma } from '../../../lib/prisma';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
 
-let server: FastifyInstance<
-  RawServerDefault,
-  IncomingMessage,
-  ServerResponse<IncomingMessage>,
-  FastifyBaseLogger,
-  FastifyTypeProviderDefault
->;
+let server: FastifyZodInstance;
 
 test('POST `/apilogin`', async () => {
   t.before(() => {
-    server = Fastify();
+    server = Fastify().withTypeProvider<ZodTypeProvider>();
     initializeServer(server);
   });
 

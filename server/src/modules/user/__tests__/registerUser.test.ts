@@ -1,29 +1,21 @@
-import Fastify, {
-  FastifyBaseLogger,
-  FastifyInstance,
-  FastifyTypeProviderDefault,
-  RawServerDefault,
-} from 'fastify';
+import Fastify from 'fastify';
 import { randomUUID } from 'crypto';
 import { faker } from '@faker-js/faker';
 import t, { test } from 'tap';
 import { ImportMock } from 'ts-mock-imports';
-import { IncomingMessage, ServerResponse } from 'http';
 
 import * as userService from '../user.service';
-import { initializeServer } from '../../../initializeServer';
+import {
+  FastifyZodInstance,
+  initializeServer,
+} from '../../../initializeServer';
 import { prisma } from '../../../lib/prisma';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
 
-let server: FastifyInstance<
-  RawServerDefault,
-  IncomingMessage,
-  ServerResponse<IncomingMessage>,
-  FastifyBaseLogger,
-  FastifyTypeProviderDefault
->;
+let server: FastifyZodInstance;
 
 t.before(() => {
-  server = Fastify();
+  server = Fastify().withTypeProvider<ZodTypeProvider>();
   initializeServer(server);
 });
 

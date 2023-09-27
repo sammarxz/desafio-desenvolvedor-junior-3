@@ -1,10 +1,11 @@
 import Fastify from 'fastify';
 import { test } from 'tap';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
 
 import { initializeServer } from '../initializeServer';
 
 test('requests the `/healthcheck` route', async (t) => {
-  const server = Fastify();
+  const server = Fastify().withTypeProvider<ZodTypeProvider>();
 
   initializeServer(server);
 
