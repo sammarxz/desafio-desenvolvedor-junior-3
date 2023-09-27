@@ -14,6 +14,7 @@ import {
 } from 'fastify-type-provider-zod';
 import fjwt, { JWT } from '@fastify/jwt';
 import { fastifyEnv } from '@fastify/env';
+import { version } from '../package.json';
 
 import { userRoutes } from './modules/user/user.routes';
 import { postRoutes } from './modules/post/post.routes';
@@ -80,7 +81,7 @@ const swaggerOptions = {
     info: {
       title: 'Fastify API',
       description: 'API for Softmakers developer test',
-      version: '1.0.0',
+      version,
     },
   },
   transform: jsonSchemaTransform,
