@@ -10,6 +10,7 @@
 - Prisma ORM
 - PostgresSQL
 - Typescript
+- Swagger OpenAPI
 
 ## Database Docker setup
 
