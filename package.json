@@ -14,7 +14,9 @@
   "scripts": {
     "start:server": "cd server && yarn dev",
     "start:web": "cd web && yarn dev --port=3333",
-    "dev": "yarn start:server & yarn start:web"
+    "dev": "yarn start:server & yarn start:web",
+    "database:start": "docker-compose up -d",
+    "database:stop": "docker-compose down"
   },
   "license": "MIT",
   "devDependencies": {

@@ -11,9 +11,7 @@
     "lint:fix": "eslint ./src --ext .ts --fix",
     "style:check": "prettier --check 'src/**/*.ts'",
     "style:fix": "prettier --write 'src/**/*.ts'",
-    "test": "tap --allow-empty-coverage",
-    "database:start": "docker-compose up -d",
-    "database:stop": "docker-compose down"
+    "test": "tap --allow-empty-coverage"
   },
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
