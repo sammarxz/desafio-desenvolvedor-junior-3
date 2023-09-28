@@ -12,9 +12,7 @@
   "repository": "git@github.com:sammarxz/desafio-desenvolvedor-junior-3.git",
   "author": "Sam Marxz <sammarxzz@gmail.com>",
   "scripts": {
-    "start:server": "cd server && yarn dev",
-    "start:web": "cd web && yarn dev --port=3333",
-    "dev": "yarn start:server & yarn start:web",
+    "dev": "yarn workspace server dev & yarn workspace web dev --port=3333",
     "database:start": "docker-compose up -d",
     "database:stop": "docker-compose down"
   },
