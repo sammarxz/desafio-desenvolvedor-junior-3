@@ -1,0 +1,26 @@
+{
+  "name": "desafio-desenvolvedor-junior-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "server",
+      "web"
+    ]
+  },
+  "repository": "git@github.com:sammarxz/desafio-desenvolvedor-junior-3.git",
+  "author": "Sam Marxz <sammarxzz@gmail.com>",
+  "scripts": {
+    "start:server": "cd server && yarn dev",
+    "start:web": "cd web && yarn dev --port=3333",
+    "dev": "yarn start:server & yarn start:web"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.7.1",
+    "eslint": "^8.50.0",
+    "git-commit-msg-linter": "^5.0.4",
+    "typescript": "^5.2.2"
+  }
+}
