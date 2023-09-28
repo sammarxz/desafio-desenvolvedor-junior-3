@@ -1,5 +1,7 @@
 # Server
 
+![Swagger Docs Preview](.github/preview.png)
+
 ## Technologies
 
 - Fastify
