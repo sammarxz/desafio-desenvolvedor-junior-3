@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  # server:
+  #   container_name: server
+  #   image: softmakers/server
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '3000:3000'
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - postgres
+  #   restart: on-failure
+  
+  postgres:
+    image: 'postgres:13'
+    hostname: postgres
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    name: server-db

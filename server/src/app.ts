@@ -3,7 +3,7 @@ import { ZodTypeProvider } from 'fastify-type-provider-zod';
 
 import { initializeServer } from './initializeServer';
 
-const PORT = 3333;
+const PORT = Number(process.env.PORT) || 3000;
 const server = Fastify().withTypeProvider<ZodTypeProvider>();
 
 initializeServer(server);

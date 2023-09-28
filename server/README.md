@@ -11,6 +11,20 @@
 - PostgresSQL
 - Typescript
 
+## Database Docker setup
+
+1. Initialize the Docker container with a Postgres database
+
+```
+yarn database:start
+```
+
+2. Execute the Prisma Migration:
+
+```
+yarn prisma migrate dev --name init
+```
+
 ## Available Commands
 
 #### Run Development Server
@@ -72,5 +86,9 @@ yarn prisma studio
 6. [x] Create User Register
 7. [x] Create User Login
 8. [x] CRUD Posts
-9. [ ] Dockerize application
+9. [x] Dockerize application
 10. [ ] Deploy
+
+## TODO:
+
+- [ ] Researh how to automatically run the Prisma Migration inside Docker

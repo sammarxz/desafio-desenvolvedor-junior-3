@@ -6,12 +6,15 @@
   "author": "Sam Marxz <sammarxzz@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "npx prisma migrate dev --name init && npm run dev",
     "dev": "tsx watch src/app.ts",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
     "style:check": "prettier --check 'src/**/*.ts'",
     "style:fix": "prettier --write 'src/**/*.ts'",
-    "test": "tap --allow-empty-coverage"
+    "test": "tap --allow-empty-coverage",
+    "database:start": "docker-compose up -d",
+    "database:stop": "docker-compose down"
   },
   "dependencies": {
     "@faker-js/faker": "^8.1.0",

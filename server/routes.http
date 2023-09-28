@@ -1,5 +1,6 @@
-POST http://localhost:3333/api/users
+POST /api/register
 Content-Type: application/json
+Host: localhost:3000
 
 {
   "email": "test@gmail.com",
@@ -8,10 +9,53 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3333/api/users/login
+POST /api/login
 Content-Type: application/json
+Host: localhost:3000
 
 {
   "email": "test@gmail.com",
   "password": "required"
 }
+
+###
+
+GET /api/posts
+Host: localhost:3000
+
+###
+
+POST /api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjZTliZjgzLTIxMDgtNDIyZi04ZTEyLTYzYThiODYwNDJhZSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE2OTU5MjQzNDcsImV4cCI6MTY5NjAxMDc0N30.SJq0YOFTGPEIinU2dIEV3oWSs3fpy4sfFwFyNq9sTXg
+Host: localhost:3000
+
+{
+	"content": "Hello World"
+}
+
+###
+
+PUT /api/posts/58aeb56b-445d-4acf-87b3-7fc74428add5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOTQ0YmJmLWFkOGItNDMxYS1iMWQxLWUxNmY1OTY2NDJlOSIsImVtYWlsIjoic2FtbWFyeHpAcHJvdG9ubWFpbC5jb20iLCJpYXQiOjE2OTU4MjQ2NTksImV4cCI6MTY5NTkxMTA1OX0.YLCPh0YI8pL3wFis8qn-LvNfu7df_H6wlKt4R7HqKM8
+Host: localhost:3000
+
+{
+	"content": "nblabasdasdal"
+}
+
+###
+
+DELETE /api/posts/58aeb56b-445d-4acf-87b3-7fc74428add5 HTTP/1.1
+User-Agent: insomnia/2023.5.8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOTQ0YmJmLWFkOGItNDMxYS1iMWQxLWUxNmY1OTY2NDJlOSIsImVtYWlsIjoic2FtbWFyeHpAcHJvdG9ubWFpbC5jb20iLCJpYXQiOjE2OTU4MjQ2NTksImV4cCI6MTY5NTkxMTA1OX0.YLCPh0YI8pL3wFis8qn-LvNfu7df_H6wlKt4R7HqKM8
+Host: localhost:3000
+
+###
+
+GET /api/posts/7fc62eec-89b6-4fa5-8904-8ac9d7eb9a50 HTTP/1.1
+User-Agent: insomnia/2023.5.8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwY2Y3ZjgxLTY4NzktNDcwOS1iMzliLTc4NTQyZDExNzVjMiIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE2OTU5MDkxMDUsImV4cCI6MTY5NTk5NTUwNX0.e9Rx76u8pSh5MlirSSk9QNuR6oiTyIJBYlKuo4Jc1aE
+Host: localhost:3000
+
