@@ -1,6 +1,12 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 
-import { createPost, deletePost, getPosts, updatePost } from './post.service';
+import {
+  createPost,
+  deletePost,
+  getPostById,
+  getPosts,
+  updatePost,
+} from './post.service';
 
 import { CreatePostInput, PostIdInput, UpdatePostInput } from './post.schema';
 
@@ -20,6 +26,23 @@ export async function getPostsHandler() {
   return posts;
 }
 
+export async function getPostByIdHandler(
+  req: FastifyRequest<{
+    Params: PostIdInput;
+  }>,
+  reply: FastifyReply
+) {
+  const post = await getPostById(req.user.id, req.params);
+
+  if (!post) {
+    return reply.code(404).send({
+      message: 'Post not found',
+    });
+  }
+
+  return post;
+}
+
 export async function deletePostHandler(
   req: FastifyRequest<{
     Params: PostIdInput;
@@ -34,10 +57,7 @@ export async function deletePostHandler(
     });
   }
 
-  reply.code(204).send({
-    status: 'success',
-    data: null,
-  });
+  reply.code(204).send();
 }
 
 export async function updatePostHandler(

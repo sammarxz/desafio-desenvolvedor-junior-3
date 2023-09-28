@@ -30,6 +30,27 @@ export async function getPosts() {
   });
 }
 
+export async function getPostById(userId: UserIdInput, postId: PostIdInput) {
+  return await prisma.post.findUnique({
+    where: {
+      id: postId.postId,
+      authorId: userId,
+    },
+    select: {
+      id: true,
+      content: true,
+      createdAt: true,
+      updatedAt: true,
+      author: {
+        select: {
+          id: true,
+          email: true,
+        },
+      },
+    },
+  });
+}
+
 export async function deletePost(userId: UserIdInput, postId: PostIdInput) {
   return await prisma.post.delete({
     where: {

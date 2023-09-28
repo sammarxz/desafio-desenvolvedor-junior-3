@@ -38,12 +38,12 @@ export const createPostResponseSchema = z.object({
   authorId: z.string().uuid(),
 });
 
-export const postsResponseSchema = z.array(
-  z.object({
-    ...commonPostSchema,
-    author: authorSchema,
-  })
-);
+export const postSchema = z.object({
+  ...commonPostSchema,
+  author: authorSchema,
+});
+
+export const postsResponseSchema = z.array(postSchema);
 
 export const postIdParamSchema = z.object({
   postId: z.string().uuid(),
@@ -64,6 +64,7 @@ export const { schemas: postSchemas, $ref } = buildJsonSchemas(
     postsResponseSchema,
     postIdParamSchema,
     updatePostSchema,
+    postSchema,
   },
   {
     $id: 'postSchemas',
