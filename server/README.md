@@ -56,6 +56,7 @@ yarn prisma studio
 - **POST /api/login** - Login user
 - **POST /api/posts** - Create a new Post (Auth required)
 - **GET /api/posts** - Get all posts
+- **GET /api/posts/:postId** - Get a post by Id (auth required)
 - **PUT /api/posts/:postId** - Update a post by Id (auth required)
 - **DELETE /api/posts/:postId** - Delete a post by Id (auth required)
 
