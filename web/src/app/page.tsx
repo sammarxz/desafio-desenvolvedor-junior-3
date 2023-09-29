@@ -12,10 +12,6 @@ import { Card } from '@/components/ui/card';
 
 export const dynamic = 'force-dynamic';
 
-export const preload = () => {
-  void getPosts();
-};
-
 export default async function Page() {
   const session = await getServerSession(authOptions);
   const posts = await getPosts();
