@@ -1,16 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Navbar } from "@/components/ui/navbar";
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-12">
+    <main className="flex flex-col gap-12 py-16">
+      <Navbar />
       <form action="" className="flex flex-col gap-4">
         <Textarea placeholder="what's happening bro?" />
         <div className="flex justify-between items-center">
@@ -44,6 +41,6 @@ export default function Page() {
           </CardFooter>
         </Card>
       </section>
-    </div>
+    </main>
   )
 }

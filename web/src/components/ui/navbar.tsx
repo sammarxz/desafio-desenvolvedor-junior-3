@@ -1,16 +1,14 @@
-"use client";
+'use client';
 
-import { signIn, signOut, useSession } from "next-auth/react"
-import Link from "next/link";
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { Button } from '@/components/ui/button';
 
 export const Navbar = () => {
   const { data: session } = useSession();
 
-  console.log(session)
+  console.log(session);
 
   return (
     <nav className="flex justify-between items-center">
@@ -31,5 +29,5 @@ export const Navbar = () => {
         )}
       </div>
     </nav>
-  )
-}
+  );
+};
