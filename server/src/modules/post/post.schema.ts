@@ -56,6 +56,7 @@ export const updatePostSchema = z.object({
 export type CreatePostInput = z.infer<typeof createPostSchema>;
 export type PostIdInput = z.infer<typeof postIdParamSchema>;
 export type UpdatePostInput = z.infer<typeof updatePostSchema>;
+export type PostsResponse = z.infer<typeof postsResponseSchema>;
 
 export const { schemas: postSchemas, $ref } = buildJsonSchemas(
   {

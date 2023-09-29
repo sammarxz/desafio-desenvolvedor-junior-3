@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -56,6 +56,8 @@ export function UserForm() {
         description: response.error,
       });
     }
+
+    return router.push('/');
   }
 
   async function registerUser(values: UserCredentials) {
@@ -86,7 +88,7 @@ export function UserForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     if (mode === 'signIn') {
       loginUser(values);
-      return router.push('/');
+      return;
     }
 
     registerUser(values);
@@ -127,7 +129,11 @@ export function UserForm() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={!userForm.formState.isValid}
+            >
               {mode === 'signIn' ? 'Sign In' : 'Sign Up'}
             </Button>
           </CardFooter>
