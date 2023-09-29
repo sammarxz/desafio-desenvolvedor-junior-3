@@ -111,7 +111,7 @@ export async function initializeServer(server: FastifyZodInstance) {
   server.register(fastifySwagger, swaggerOptions);
   server.register(fastifySwaggerUi, swaggerUiOptions);
   server.register(cors, {
-    origin: true,
+    origin: ['http://localhost:3000'],
   });
 
   // create decorator
