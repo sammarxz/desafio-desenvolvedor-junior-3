@@ -14,8 +14,12 @@ import { createPost } from '@/lib/posts/posts.request';
 
 const MAX_CHARACTERS = 200;
 
-const postSchema = z.object({
-  content: z.string().max(MAX_CHARACTERS),
+export const postSchema = z.object({
+  content: z
+    .string()
+    .min(2)
+    .max(MAX_CHARACTERS)
+    .nonempty('Content is required'),
 });
 
 export function PostForm() {
@@ -33,8 +37,8 @@ export function PostForm() {
   });
 
   async function onSubmit(values: z.infer<typeof postSchema>) {
-    const token = session.data?.user!.accessToken;
-    await createPost(token!, JSON.stringify(values));
+    const accessToken = session.data?.user!.accessToken;
+    await createPost(accessToken!, JSON.stringify(values));
 
     router.refresh();
     reset();

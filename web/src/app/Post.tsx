@@ -5,6 +5,8 @@ import { formatDistance } from 'date-fns';
 import { PencilLine, Trash } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -13,6 +15,9 @@ import { Input } from '@/components/ui/input';
 import { type PostData } from '@/lib/posts/post.types';
 import { deletePost, updatePost } from '@/lib/posts/posts.request';
 
+import { postSchema } from './PostForm';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 export function Post({ post, authorId }: { post: PostData; authorId: string }) {
   const {
     content,
@@ -20,10 +25,18 @@ export function Post({ post, authorId }: { post: PostData; authorId: string }) {
     author: { id, email },
   } = post;
 
+  const { control, handleSubmit, formState } = useForm<
+    z.infer<typeof postSchema>
+  >({
+    resolver: zodResolver(postSchema),
+    defaultValues: {
+      content,
+    },
+    // mode: 'onChange',
+  });
+
   const { data: sessionData } = useSession();
   const router = useRouter();
-
-  const [postContent, setPostContent] = useState(content);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleDeletePost = async (postId: string) => {
@@ -34,17 +47,11 @@ export function Post({ post, authorId }: { post: PostData; authorId: string }) {
     }
   };
 
-  const handleUpdatePost = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const updatedContent = {
-      content: postContent,
-    };
-
+  const handleUpdatePost = async (values: z.infer<typeof postSchema>) => {
     const accessToken = sessionData?.user.accessToken;
     if (accessToken) {
       try {
-        await updatePost(accessToken, post.id, JSON.stringify(updatedContent));
+        await updatePost(accessToken, post.id, JSON.stringify(values));
         setIsEditing(false);
         router.refresh();
       } catch (err) {
@@ -63,12 +70,13 @@ export function Post({ post, authorId }: { post: PostData; authorId: string }) {
     <Card>
       <CardContent className="pt-6">
         {isEditing ? (
-          <form onSubmit={handleUpdatePost}>
-            <Input
-              defaultValue={postContent}
-              onChange={(e) => setPostContent(e.target.value)}
-              onKeyDown={handleInputKeyDown}
-              autoFocus
+          <form onSubmit={handleSubmit(handleUpdatePost)}>
+            <Controller
+              name="content"
+              control={control}
+              render={({ field }) => (
+                <Input {...field} onKeyDown={handleInputKeyDown} autoFocus />
+              )}
             />
           </form>
         ) : (
