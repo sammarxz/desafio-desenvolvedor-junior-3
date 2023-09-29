@@ -22,7 +22,7 @@
     "build:web": "yarn workspace web buil",
     "build": "yarn build:server && yarn:build:web",
     "start:server": "yarn workspace server start",
-    "start:dev": "yarn workspace web start"
+    "start:web": "yarn workspace web start"
   },
   "license": "MIT",
   "devDependencies": {
