@@ -37,6 +37,8 @@ export const loginUserSchema = z.object({
 
 export const loginUserResponseSchema = z.object({
   accessToken: z.string(),
+  id: z.string().uuid(),
+  ...userCore,
 });
 
 export type CreateUserInput = z.infer<typeof createUserSchema>;

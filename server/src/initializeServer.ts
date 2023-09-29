@@ -14,7 +14,7 @@ import {
 } from 'fastify-type-provider-zod';
 import fjwt, { JWT } from '@fastify/jwt';
 import { fastifyEnv } from '@fastify/env';
-import cors from '@fastify/cors'
+import cors from '@fastify/cors';
 
 import { version } from '../package.json';
 
@@ -111,8 +111,8 @@ export async function initializeServer(server: FastifyZodInstance) {
   server.register(fastifySwagger, swaggerOptions);
   server.register(fastifySwaggerUi, swaggerUiOptions);
   server.register(cors, {
-    origin: true
-  })
+    origin: true,
+  });
 
   // create decorator
   server.decorate(

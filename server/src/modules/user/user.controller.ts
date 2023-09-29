@@ -44,6 +44,8 @@ export async function loginUserHandler(
 
   if (correctPassword) {
     return {
+      id: user.id,
+      email: user.email,
       accessToken: req.jwt.sign(
         {
           id: user.id,
