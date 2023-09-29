@@ -18,7 +18,7 @@ export async function handleCommonRequest<T>(
   const options: RequestInit = {
     method,
     headers,
-    body: body ? JSON.stringify(body) : undefined,
+    body,
   };
 
   const response = await fetch(`${SERVER_ENDPOINT}${endpoint}`, options);
