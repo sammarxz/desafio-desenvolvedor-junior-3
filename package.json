@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
+  "engines": {
+    "node": "18"
+  },
   "workspaces": {
     "packages": [
       "server",
@@ -14,7 +17,12 @@
   "scripts": {
     "dev": "yarn workspace server dev & yarn workspace web dev",
     "database:start": "docker-compose up -d",
-    "database:stop": "docker-compose down"
+    "database:stop": "docker-compose down",
+    "build:server": "yarn workspace server build",
+    "build:web": "yarn workspace web buil",
+    "build": "yarn build:server && yarn:build:web",
+    "start:server": "yarn workspace server start",
+    "start:dev": "yarn workspace web start"
   },
   "license": "MIT",
   "devDependencies": {

@@ -5,13 +5,14 @@
   "author": "Sam Marxz <sammarxzz@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npx prisma migrate dev --name init && npm run dev",
+    "start": "node dist/app.js",
     "dev": "tsx watch src/app.ts",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
     "style:check": "prettier --check 'src/**/*.ts'",
     "style:fix": "prettier --write 'src/**/*.ts'",
-    "test": "tap --allow-empty-coverage"
+    "test": "tap --allow-empty-coverage",
+    "build": "npx tsup src"
   },
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
