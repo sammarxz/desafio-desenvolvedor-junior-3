@@ -19,8 +19,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
-import { UserCredentials } from '@/lib/types';
-import { apiRegisterUser } from '@/lib/api-requests';
+
+import { UserCredentials } from '@/lib/user/user.types';
+import { apiRegisterUser } from '@/lib/user/user.request';
 
 type FormModeType = 'signIn' | 'signUp';
 

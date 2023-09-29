@@ -10,8 +10,8 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-import { PostData } from '@/lib/types';
-import { deletePost, updatePost } from '@/lib/api-requests';
+import { type PostData } from '@/lib/posts/post.types';
+import { deletePost, updatePost } from '@/lib/posts/posts.request';
 
 export function Post({ post, authorId }: { post: PostData; authorId: string }) {
   const {

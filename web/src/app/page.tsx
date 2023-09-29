@@ -4,10 +4,11 @@ import { Separator } from '@/components/ui/separator';
 import { Navbar } from '@/components/ui/navbar';
 
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { getPosts } from '@/lib/api-requests';
+import { getPosts } from '@/lib/posts/posts.request';
 
 import { PostForm } from './PostForm';
 import { Post } from './Post';
+import { Card } from '@/components/ui/card';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,7 +33,11 @@ export default async function Page() {
               <Post key={post.id} post={post} authorId={session?.user.id!} />
             ))}
           </>
-        ) : null}
+        ) : (
+          <Card className="p-4">
+            <p>No posts found 😢</p>
+          </Card>
+        )}
       </section>
     </main>
   );

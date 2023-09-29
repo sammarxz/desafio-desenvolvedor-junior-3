@@ -2,13 +2,15 @@
 
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createPost } from '@/lib/api-requests';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+
+import { createPost } from '@/lib/posts/posts.request';
 
 const MAX_CHARACTERS = 200;
 
