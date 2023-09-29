@@ -27,6 +27,9 @@ export async function getPosts() {
         },
       },
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 }
 
