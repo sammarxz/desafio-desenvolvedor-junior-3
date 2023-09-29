@@ -35,7 +35,7 @@ export function PostForm() {
     await createPost(token!, JSON.stringify(values));
 
     router.refresh();
-    reset(); // Limpar o campo de texto após o envio
+    reset();
   }
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {

@@ -19,6 +19,8 @@ export default async function Page() {
   const session = await getServerSession(authOptions);
   const posts = await getPosts();
 
+  console.log(session?.user.id);
+
   return (
     <main className="flex flex-col gap-12 py-16">
       <Navbar />
@@ -29,7 +31,7 @@ export default async function Page() {
             <Separator />
             <h1>Latest Posts</h1>
             {posts.map((post) => (
-              <Post key={post.id} post={post} />
+              <Post key={post.id} post={post} authorId={session?.user.id!} />
             ))}
           </>
         ) : null}
