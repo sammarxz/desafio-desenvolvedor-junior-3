@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-EXPOSE 3000
+EXPOSE 3333
 
 RUN npm install npm@latest -g
 

@@ -24,5 +24,5 @@ yarn prisma migrate dev --name init
 yarn dev
 ```
 
-- **http://localhost:3333** - front-end server
-- **http://localhost:3000** - back-end server
+- **http://localhost:3000** - front-end server
+- **http://localhost:3333** - back-end server
