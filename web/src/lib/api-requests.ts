@@ -75,3 +75,20 @@ export async function deletePost(
 
   return handleResponse<UserResponse>(response).then((data) => data);
 }
+
+export async function updatePost(
+  token: string,
+  postId: string,
+  content: string
+): Promise<UserResponse> {
+  const response = await fetch(`${SERVER_ENDPOINT}/posts/${postId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: content,
+  });
+
+  return handleResponse<UserResponse>(response).then((data) => data);
+}

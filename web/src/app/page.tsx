@@ -19,8 +19,6 @@ export default async function Page() {
   const session = await getServerSession(authOptions);
   const posts = await getPosts();
 
-  console.log(session?.user.id);
-
   return (
     <main className="flex flex-col gap-12 py-16">
       <Navbar />
