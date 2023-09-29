@@ -21,12 +21,12 @@ export const authOptions: NextAuthOptions = {
           headers: { 'Content-Type': 'application/json' },
         });
 
-        const user = await res.json();
+        const result = await res.json();
 
-        if (user.accessToken) {
-          return user;
+        if (result.accessToken) {
+          return result;
         } else {
-          return null;
+          throw new Error('Invalid Credentials');
         }
       },
     }),

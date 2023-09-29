@@ -8,8 +8,6 @@ import { Button } from '@/components/ui/button';
 export const Navbar = () => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   return (
     <nav className="flex justify-between items-center">
       <Link href="/" className="font-mono font-bold text-lg">

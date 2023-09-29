@@ -1,9 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 import { Button } from '@/components/ui/button';
 import { CardContent, CardFooter } from '@/components/ui/card';
@@ -16,7 +18,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { signIn } from 'next-auth/react';
+import { useToast } from '@/components/ui/use-toast';
+import { UserCredentials } from '@/lib/types';
+import { apiRegisterUser } from '@/lib/api-requests';
 
 type FormModeType = 'signIn' | 'signUp';
 
@@ -27,6 +31,8 @@ const formSchema = z.object({
 
 export function UserForm() {
   const [mode, setMode] = React.useState<FormModeType>('signIn');
+  const { toast } = useToast();
+  const router = useRouter();
 
   const userForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,18 +42,54 @@ export function UserForm() {
     },
   });
 
-  function registerUser() {}
+  async function loginUser(values: UserCredentials) {
+    const response = await signIn('credentials', {
+      ...values,
+      redirect: false,
+      callbackUrl: '/',
+    });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (mode === 'signIn') {
-      return await signIn('credentials', {
-        ...values,
-        redirect: true,
-        callbackUrl: '/',
+    if (response?.error) {
+      return toast({
+        variant: 'destructive',
+        title: 'Ops! Error',
+        description: response.error,
       });
     }
+  }
 
-    // return registerUser(values)
+  async function registerUser(values: UserCredentials) {
+    try {
+      const user = await apiRegisterUser(JSON.stringify(values));
+      toast({
+        title: 'Success',
+        description: 'User created successfully',
+      });
+      // auto login
+      await loginUser({
+        email: user.email,
+        password: values.password,
+      });
+      return router.push('/');
+    } catch (error: any) {
+      userForm.setError('email', {
+        message: error.message,
+      });
+      // return toast({
+      //   variant: 'destructive',
+      //   title: 'Ops! Error',
+      //   description: error.message,
+      // });
+    }
+  }
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    if (mode === 'signIn') {
+      loginUser(values);
+      return router.push('/');
+    }
+
+    registerUser(values);
   }
 
   return (
